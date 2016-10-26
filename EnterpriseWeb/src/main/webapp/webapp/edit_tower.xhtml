@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: mc
+  Date: 2016-10-12
+  Time: 16:54
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<f:metadata>
+    <f:viewParam name="towerId" value="#{editTower.towerId}" />
+    <f:event type="preRenderView" listener="#{editTower.init()}" />
+</f:metadata>
+<h:head>
+    <title>${msg.edit_or_add_tower}</title>
+</h:head>
+
+<h:body>
+    <ui:composition template="/WEB-INF/templates/main.xhtml">
+        <ui:define name="head">
+            <title>#{msg.edit_or_add_tower}</title>
+        </ui:define>
+        <ui:define name="content">
+            <h:form>
+                <h:outputText value="#{msg.tower} #{msg.tower_height}: " />
+                <h:inputText id="height" value="#{editTower.tower.height}">
+                    <!--<f:validateRegex pattern="([1-9]\d*|0)"/>-->
+                </h:inputText>
+                <h:commandButton value="${msg.save}" action="#{editTower.saveTower}"/>
+            </h:form>
+            <h:button value="${msg.back}" outcome="list_towers_and_mages.xhtml"/>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>

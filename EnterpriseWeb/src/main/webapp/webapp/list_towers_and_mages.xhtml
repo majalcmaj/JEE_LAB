@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: mc
+  Date: 2016-10-12
+  Time: 16:54
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<body>
+<ui:composition template="/WEB-INF/templates/main.xhtml">
+    <ui:define name="head">
+        <title>#{msg.towers_and_mages}</title>
+    </ui:define>
+    <ui:define name="content">
+        <ul>
+            <ui:repeat value="#{listTowersAndMages.towers}" var="tower">
+                <li>
+                    <h:outputText value="#{msg.tower}, #{msg.tower_height}: #{tower.height}" />
+                    <h:button outcome="edit_tower.xhtml" image="resources/images/edit.png">
+                        <f:param name="towerId" value="#{tower.id}" />
+                    </h:button>
+                    <h:form style="display: inline-block" action="list_towers_and_mages">
+                        <h:commandButton action="#{listTowersAndMages.removeTower(tower)}" image="resources/images/remove.png" />
+                    </h:form>
+
+                    <br/>
+                    <ul>
+                        <ui:repeat value="#{tower.mages}" var="mage">
+                            <li>
+                                <h:outputText value="#{msg.mage_word} #{msg.mage_name}: #{mage.name} #{msg.mage_mana}: #{mage.mana} #{msg.mage_element}: #{mage.element.name().toLowerCase()}" />
+                                <h:button value=" " outcome="edit_mage.xhtml" image="resources/images/edit.png">
+                                    <f:param name="mageId" value="#{mage.id}" />
+                                </h:button>
+                                <h:form style="display: inline-block" action="list_towers_and_mages">
+                                    <h:commandButton image="resources/images/remove.png" action="#{listTowersAndMages.removeMage(mage)}"/>
+                                </h:form>
+                            </li>
+                        </ui:repeat>
+                    </ul>
+                </li>
+            </ui:repeat>
+        </ul>
+        <h:button value="#{msg.tower_new}" outcome="edit_tower.xhtml" />
+        <h:button value="#{msg.mage_new}" outcome="edit_mage.xhtml" />
+    </ui:define>
+</ui:composition>
+</body>
+</html>

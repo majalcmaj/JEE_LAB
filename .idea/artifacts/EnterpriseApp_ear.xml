@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ear" name="EnterpriseApp:ear">
+    <output-path>$PROJECT_DIR$/EnterpriseApp/target</output-path>
+    <root id="archive" name="EnterpriseApp-1.0-SNAPSHOT.ear">
+      <element id="artifact" artifact-name="EnterpriseApp:ear exploded" />
+    </root>
+  </artifact>
+</component>

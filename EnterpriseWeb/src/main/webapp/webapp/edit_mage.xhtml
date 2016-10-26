@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: mc
+  Date: 2016-10-12
+  Time: 16:54
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<f:metadata>
+    <f:viewParam name="mageId" value="#{editMage.mageId}" />
+    <f:event type="preRenderView" listener="#{editMage.init()}" />
+</f:metadata>
+<h:head>
+    <title>${msg.edit_or_add_mage}</title>
+</h:head>
+
+<h:body>
+    <ui:composition template="/WEB-INF/templates/main.xhtml">
+        <ui:define name="head">
+            <title>#{msg.edit_or_add_mage}</title>
+        </ui:define>
+        <ui:define name="content">
+            <h:outputText value="#{msg.mage_word}" />
+            <table>
+                <h:form>
+                    <tr>
+                        <td>#{msg.mage_name}</td>
+                        <td><h:inputText id="name" value="#{editMage.mage.name}"/></td>
+                    </tr>
+                    <tr>
+                        <td>#{msg.mage_mana}</td>
+                        <td><h:inputText id="mana" value="#{editMage.mage.mana}"/></td>
+                    </tr>
+                    <tr>
+                        <td>#{msg.tower}</td>
+                        <td>
+                            <h:selectOneMenu id="tower" value="#{editMage.newTower}" converter="#{towerConverter}">
+                                <f:selectItems value="#{editMage.towersAsSelectItems()}"/>
+                            </h:selectOneMenu>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            #{msg.mage_element}
+                        </td>
+                        <td>
+                            <h:selectOneMenu id="element" value="#{editMage.mage.element}">
+                                <f:selectItems value="#{editMage.elementsAsSelectItems()}" />
+                            </h:selectOneMenu>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><h:commandButton value="${msg.save}" action="#{editMage.saveMage()}"/></td>
+                    </tr>
+                </h:form>
+            </table>
+            <h:button value="${msg.back}" outcome="list_towers_and_mages.xhtml"/>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>
