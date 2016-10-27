@@ -11,7 +11,7 @@
         </locale-config>
 
         <resource-bundle>
-            <base-name>pl.pg.eti.kask.jeelab.miccies1.properties</base-name>
+            <base-name>pl.pg.eti.kask.jeelab.miccies1.properties.messages</base-name>
             <var>msg</var>
         </resource-bundle>
     </application>

@@ -15,7 +15,6 @@ import java.util.List;
 @ToString(of = "height")
 @Getter
 @Setter
-@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -31,6 +30,14 @@ public class Tower implements Serializable{
     @GreaterThanZero
     private Integer height;
 
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof Tower) {
+            Tower other = (Tower) o;
+            return other.getId() == this.getId();
+        }
+        return false;
+    }
     @OneToMany
     private List<Mage> mages = new ArrayList<>();
 }

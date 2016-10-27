@@ -7,16 +7,16 @@
         <element id="file-copy" path="$PROJECT_DIR$/EnterpriseApp/target/EnterpriseApp-1.0-SNAPSHOT-exploded.ear/META-INF/MANIFEST.MF" />
       </element>
       <element id="dir-copy" path="$PROJECT_DIR$/EnterpriseApp/src/main/application" />
+      <element id="archive" name="EnterpriseEJB-1.0-SNAPSHOT.jar">
+        <element id="artifact" artifact-name="EnterpriseEJB:ejb exploded" />
+      </element>
       <element id="directory" name="lib">
-        <element id="archive" name="EnterpriseLib-1.0-SNAPSHOT.jar">
-          <element id="module-output" name="EnterpriseLib" />
-        </element>
         <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.14.8" />
         <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.1" />
         <element id="library" level="project" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final" />
-      </element>
-      <element id="archive" name="EnterpriseEJB-1.0-SNAPSHOT.jar">
-        <element id="artifact" artifact-name="EnterpriseEJB:ejb exploded" />
+        <element id="archive" name="EnterpriseLib-1.0-SNAPSHOT.jar">
+          <element id="module-output" name="EnterpriseLib" />
+        </element>
       </element>
       <element id="archive" name="EnterpriseWeb-1.0-SNAPSHOT.war">
         <element id="artifact" artifact-name="EnterpriseWeb:war exploded" />

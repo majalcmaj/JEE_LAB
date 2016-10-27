@@ -1,5 +1,7 @@
 package pl.pg.eti.kask.jeelab.miccies1.view;
 
+import lombok.Getter;
+import lombok.Setter;
 import pl.pg.eti.kask.jeelab.miccies1.ejb.TowerService;
 import pl.pg.eti.kask.jeelab.miccies1.entities.Mage;
 import pl.pg.eti.kask.jeelab.miccies1.entities.Tower;
@@ -23,6 +25,7 @@ public class ListTowersAndMages implements Serializable{
     private List<Tower> towers = null;
 
     public void setTowerService(TowerService towerService) { this.towerService = towerService; }
+
     public List<Tower> getTowers() {
         if(towers == null) {
             towers = towerService.findAllTowers();
@@ -30,12 +33,25 @@ public class ListTowersAndMages implements Serializable{
         return towers;
     }
 
-    public void removeTower(Tower tower) {
+    public String removeTower(Tower tower) {
         towerService.removeTower(tower.getId());
         towers.remove(tower);
+        return "list_towers_and_mages?faces-redirect=true";
     }
 
-    public void removeMage(Mage mage) {
+    @Getter
+    @Setter
+    private int mana;
+
+    public String addMana() {
+
+        towerService.increaseMana(mana);
+        return "list_towers_and_mages?faces-redirect=true";
+    }
+
+    public String removeMage(Mage mage) {
+
         towerService.removeMage(mage.getId());
+        return "list_towers_and_mages?faces-redirect=true";
     }
 }

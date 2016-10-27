@@ -49,6 +49,12 @@
         </ul>
         <h:button value="#{msg.tower_new}" outcome="edit_tower.xhtml" />
         <h:button value="#{msg.mage_new}" outcome="edit_mage.xhtml" />
+        <h:form>
+            <h:outputText value="#{msg.add_mana}" />
+            <h:inputText name="add_mana" value="#{listTowersAndMages.mana}"></h:inputText>
+            <h:commandButton action="#{listTowersAndMages.addMana}" value="#{msg.save}"/>
+        </h:form>
+
     </ui:define>
 </ui:composition>
 </body>

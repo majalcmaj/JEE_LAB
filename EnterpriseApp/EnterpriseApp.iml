@@ -19,11 +19,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="EnterpriseLib" />
-    <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.14.8" level="project" />
     <orderEntry type="module" module-name="EnterpriseEJB" />
+    <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.14.8" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final" level="project" />
+    <orderEntry type="module" module-name="EnterpriseLib" />
     <orderEntry type="module" module-name="EnterpriseWeb" />
   </component>
 </module>

@@ -108,4 +108,8 @@ public class TowerService implements Serializable {
         for(Tower modifiedTower : modifiedTowers)
             saveTower(modifiedTower);
     }
+
+    public void increaseMana(Integer by) {
+        em.createNamedQuery("Mage.increaseMana").setParameter("additional_mana", by).executeUpdate();
+    }
 }

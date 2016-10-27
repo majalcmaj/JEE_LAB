@@ -18,7 +18,10 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Entity
 @Table(name = "mages")
-@NamedQuery(name="Mage.findAll", query="SELECT m from Mage m")
+@NamedQueries({
+        @NamedQuery(name = "Mage.findAll", query = "SELECT m from Mage m"),
+        @NamedQuery(name = "Mage.increaseMana", query = "UPDATE Mage m SET m.mana = m.mana + :additional_mana")
+})
 @DiscriminatorColumn(name="type")
 @DiscriminatorValue("mage")
 public class Mage implements Serializable{
