@@ -1,0 +1,43 @@
+# ./jboss-cli.sh --connect --file=/sciezka/do/pliku/wildfly.cli
+
+# Połączenie z bazą danych
+if (outcome != success) of /subsystem=datasources/data-source=mages:read-resource
+    data-source add \
+         --name=mages \
+         --driver-name=h2 \
+         --driver-class=org.h2.Driver \
+         --connection-url=jdbc:h2:mem:mages;DB_CLOSE_DELAY=-1 \
+         --jndi-name=java:/mages \
+         --user-name=sa \
+         --password=sa \
+
+    data-source enable --name=mages
+end-if
+
+# Domena bezpieczeństwa
+if (outcome != success) of /subsystem=security/security-domain=mages:read-resource
+    /subsystem=security/security-domain=mages:add(cache-type="default")
+
+# Metoda uwierzytelniania dla domeny bezpieczeństwa
+    /subsystem=security/security-domain=mages  \
+     /authentication=classic:add( \
+       login-modules=[ { \
+         code="Database", \
+         flag="required", \
+         module-options={ \
+           dsJndiName="java:/mages", \
+           principalsQuery="select password from users where login=?", \
+           rolesQuery="select user_group, 'Roles' \
+                       from users \
+                       where login = ?", \
+           hashAlgorithm="SHA-256", \
+           hashEncoding="hex", \
+           unauthenticatedIdentity="guest" \
+         } \
+       } \
+     ])
+end-if
+
+
+# Załadowanie nowej konfiguracji w uruchomionym serwerze
+:reload

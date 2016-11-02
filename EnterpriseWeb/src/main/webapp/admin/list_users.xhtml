@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <ui:composition template="/WEB-INF/templates/logged_in_main.xhtml">
+        <ui:define name="head">
+            <title>#{msg.users}</title>
+        </ui:define>
+        <ui:define name="content_logged">
+            Hwi
+            <h:dataTable value="#{listUsers.users}" var="user">
+                <h:column>
+                    <h:outputText value="#{user.login}"/>
+                </h:column>
+                <h:column>
+                    <h:form>
+                        <h:outputText value="#{msg.password} :"/>
+                        <h:inputText value="#{listUsers.password}" />
+                        <h:commandButton action="#{listUsers.changeUsersPassword(user.login)}" value="#{msg.save}" />
+                    </h:form>
+                </h:column>
+            </h:dataTable>
+            <h:button value="#{msg.back}" outcome="/index.xhtml"/>
+        </ui:define>
+    </ui:composition>
+</f:view>
+</html>

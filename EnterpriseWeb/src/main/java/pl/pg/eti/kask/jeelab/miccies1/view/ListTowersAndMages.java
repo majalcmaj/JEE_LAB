@@ -36,7 +36,7 @@ public class ListTowersAndMages implements Serializable{
     public String removeTower(Tower tower) {
         towerService.removeTower(tower.getId());
         towers.remove(tower);
-        return "list_towers_and_mages?faces-redirect=true";
+        return "/user/list_towers_and_mages?faces-redirect=true";
     }
 
     @Getter
@@ -46,12 +46,12 @@ public class ListTowersAndMages implements Serializable{
     public String addMana() {
 
         towerService.increaseMana(mana);
-        return "list_towers_and_mages?faces-redirect=true";
+        return "/user/list_towers_and_mages?faces-redirect=true";
     }
 
     public String removeMage(Mage mage) {
 
         towerService.removeMage(mage.getId());
-        return "list_towers_and_mages?faces-redirect=true";
+        return "/user/list_towers_and_mages?faces-redirect=true";
     }
 }

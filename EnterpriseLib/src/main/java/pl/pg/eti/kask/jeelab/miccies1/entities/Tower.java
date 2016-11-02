@@ -40,4 +40,8 @@ public class Tower implements Serializable{
     }
     @OneToMany
     private List<Mage> mages = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "owner", referencedColumnName = "id")
+    private User owner;
 }

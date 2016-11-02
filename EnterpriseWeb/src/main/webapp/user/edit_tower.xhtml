@@ -23,11 +23,11 @@
 </h:head>
 
 <h:body>
-    <ui:composition template="/WEB-INF/templates/main.xhtml">
+    <ui:composition template="/WEB-INF/templates/logged_in_main.xhtml">
         <ui:define name="head">
             <title>#{msg.edit_or_add_tower}</title>
         </ui:define>
-        <ui:define name="content">
+        <ui:define name="content_logged">
             <h:form>
                 <h:outputText value="#{msg.tower} #{msg.tower_height}: " />
                 <h:inputText id="height" value="#{editTower.tower.height}">
@@ -35,7 +35,7 @@
                 </h:inputText>
                 <h:commandButton value="${msg.save}" action="#{editTower.saveTower}"/>
             </h:form>
-            <h:button value="${msg.back}" outcome="list_towers_and_mages.xhtml"/>
+            <h:button value="${msg.back}" outcome="/user/list_towers_and_mages.xhtml"/>
         </ui:define>
     </ui:composition>
 </h:body>

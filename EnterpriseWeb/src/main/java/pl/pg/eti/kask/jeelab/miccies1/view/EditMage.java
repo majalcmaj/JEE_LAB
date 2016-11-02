@@ -69,7 +69,7 @@ public class EditMage implements Serializable {
         }catch(Exception e) {
             // TODO
         }finally {
-            return "list_towers_and_mages?faces-redirect=true";
+            return "/user/list_towers_and_mages?faces-redirect=true";
         }
     }
 

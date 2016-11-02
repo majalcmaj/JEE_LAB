@@ -14,20 +14,20 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <body>
-<ui:composition template="/WEB-INF/templates/main.xhtml">
+<ui:composition template="/WEB-INF/templates/logged_in_main.xhtml">
     <ui:define name="head">
         <title>#{msg.towers_and_mages}</title>
     </ui:define>
-    <ui:define name="content">
+    <ui:define name="content_logged">
         <ul>
             <ui:repeat value="#{listTowersAndMages.towers}" var="tower">
                 <li>
                     <h:outputText value="#{msg.tower}, #{msg.tower_height}: #{tower.height}" />
-                    <h:button outcome="edit_tower.xhtml" image="resources/images/edit.png">
+                    <h:button outcome="edit_tower.xhtml" image="/resources/images/edit.png">
                         <f:param name="towerId" value="#{tower.id}" />
                     </h:button>
                     <h:form style="display: inline-block" action="list_towers_and_mages">
-                        <h:commandButton action="#{listTowersAndMages.removeTower(tower)}" image="resources/images/remove.png" />
+                        <h:commandButton action="#{listTowersAndMages.removeTower(tower)}" image="/resources/images/remove.png" />
                     </h:form>
 
                     <br/>
@@ -35,10 +35,10 @@
                         <ui:repeat value="#{tower.mages}" var="mage">
                             <li>
                                 <h:outputText value="#{msg.mage_word} #{msg.mage_name}: #{mage.name} #{msg.mage_mana}: #{mage.mana} #{msg.mage_element}: #{mage.element.name().toLowerCase()}" />
-                                <h:button value=" " outcome="edit_mage.xhtml" image="resources/images/edit.png">
+                                <h:button value=" " outcome="edit_mage.xhtml" image="/resources/images/edit.png">
                                     <f:param name="mageId" value="#{mage.id}" />
                                 </h:button>
-                                <h:form style="display: inline-block" action="list_towers_and_mages">
+                                <h:form style="display: inline-block" action="/list_towers_and_mages">
                                     <h:commandButton image="resources/images/remove.png" action="#{listTowersAndMages.removeMage(mage)}"/>
                                 </h:form>
                             </li>

@@ -47,14 +47,14 @@ public class EditTower implements Serializable {
     public String saveTower() {
         try {
             towerService.saveTower(this.tower);
-            return "list_towers_and_mages?faces-redirect=true";
+            return "/user/list_towers_and_mages?faces-redirect=true";
         }catch(Exception ex) {
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("error/404.xhtml");
             } catch (IOException e) {
                 log.log(Level.SEVERE, null, ex);
             }finally {
-                return "list_towers_and_mages?faces-redirect=true";
+                return "/user/list_towers_and_mages?faces-redirect=true";
             }
         }
     }

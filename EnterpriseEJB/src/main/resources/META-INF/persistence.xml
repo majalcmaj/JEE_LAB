@@ -4,6 +4,7 @@
         <jta-data-source>java:/mages</jta-data-source>
         <class>pl.pg.eti.kask.jeelab.miccies1.entities.Mage</class>
         <class>pl.pg.eti.kask.jeelab.miccies1.entities.Tower</class>
+        <class>pl.pg.eti.kask.jeelab.miccies1.entities.User</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <shared-cache-mode>ALL</shared-cache-mode>
         <properties>
@@ -11,6 +12,8 @@
             <property name="hibernate.format_sql" value="false"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
+            <property name="javax.persistence.sql-load-script-source" value="init.sql" />
         </properties>
+
     </persistence-unit>
 </persistence>
