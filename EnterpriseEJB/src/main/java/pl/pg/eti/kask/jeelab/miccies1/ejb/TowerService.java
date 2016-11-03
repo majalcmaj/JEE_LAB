@@ -58,7 +58,13 @@ public class TowerService implements Serializable {
 
     @RolesAllowed({"Admin", "User"})
     public Mage findMage(int id) {
-        return em.find(Mage.class, id);
+        Mage m = em.find(Mage.class, id);
+        if(!sctx.isCallerInRole("Admin")) {
+            if(!findTower(m.getTowerId()).getOwner().getLogin().
+                    equals(sctx.getCallerPrincipal().getName()))
+                return null;
+        }
+        return m;
     }
 
     @RolesAllowed({"Admin", "User"})
@@ -139,8 +145,8 @@ public class TowerService implements Serializable {
         }else {
             Mage managedMage = findMage(mage.getId());
             if(!mage.getTowerId().equals(managedMage.getTowerId())) {
-                managedMage.setTowerId(mage.getTowerId());
                 Tower oldTower = findTower(managedMage.getTowerId());
+                managedMage.setTowerId(mage.getTowerId());
                 oldTower.getMages().remove(managedMage);
                 Tower newTower = findTower(mage.getTowerId());
                 newTower.getMages().add(mage);
@@ -150,6 +156,7 @@ public class TowerService implements Serializable {
             managedMage.setElement(mage.getElement());
             managedMage.setName(mage.getName());
             managedMage.setMana(mage.getMana());
+            em.persist(managedMage);
         }
         for(Tower modifiedTower : modifiedTowers)
             saveTower(modifiedTower);

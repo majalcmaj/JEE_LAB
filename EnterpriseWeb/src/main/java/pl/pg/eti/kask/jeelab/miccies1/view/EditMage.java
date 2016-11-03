@@ -50,11 +50,17 @@ public class EditMage implements Serializable {
         if(mage == null) {
             if (mageId != null) {
                 mage = towerService.findMage(mageId);
+                if(mage == null)
+                    try {
+                        FacesContext.getCurrentInstance().getExternalContext().responseSendError(403, "Cannot access mage!");
+                    } catch (IOException e) {
+                        log.log(Level.SEVERE, null, e);
+                    }
             } else if (mageId == null) {
                 mage = new Mage();
             } else {
                 try {
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("error/404.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/error/404.xhtml");
                 } catch (IOException e) {
                     log.log(Level.SEVERE, null, e);
                 }
@@ -67,7 +73,7 @@ public class EditMage implements Serializable {
             this.mage.setTowerId(newTower.getId());
             towerService.saveMage(this.mage);
         }catch(Exception e) {
-            // TODO
+            log.log(Level.WARNING, null, e);
         }finally {
             return "/user/list_towers_and_mages?faces-redirect=true";
         }
